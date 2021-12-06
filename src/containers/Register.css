@@ -5,23 +5,19 @@ body {
 
 .main {
     background-color: #FFFFFF;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 450px;
     margin: 7em auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
 }
 
-.sign {
+.register {
     padding-top: 40px;
     color: #8C55AA;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     font-size: 23px;
-}
-
-.un:hover{
-    border-color: black;
 }
 
 .un {
@@ -68,9 +64,6 @@ margin-bottom: 27px;
 font-family: 'Ubuntu', sans-serif;
 }
 
-.pass:hover{
-    border-color:black ;
-}
 
 .un:focus, .pass:focus {
     border: 2px solid rgba(0, 0, 0, 0.18) !important;
@@ -98,7 +91,7 @@ font-family: 'Ubuntu', sans-serif;
     color: #E1BEE7;
     padding-top: 15px;
 }
-.newUser {
+.oldUser {
     text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
     color: #E1BEE7;
     padding-top: 6px;

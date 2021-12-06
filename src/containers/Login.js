@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-// import { useNavigate } from "react-router-dom";
+// import Form from "react-bootstrap/Form";
+// import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 import './Login.css'
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-//   let navigate = useNavigate();
+  let navigate = useNavigate();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -19,33 +19,46 @@ export default function Login() {
     var password = event.target[1].value
     console.log(email)
     console.log(password)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email:email,password:password })
+  };
+  fetch('http://localhost:8080/user/present', requestOptions)
+  .then(response => response.json())
+  .then(data => {
+      if (data === true) {  
+          console.log(data)
+          navigate("../home", { replace: true });           
+      }
+  });
   }
 
   return (
-    <div className="login">
-      <Form className="loginForm" onSubmit={handleSubmit} >
-        <Form.Group className="email" size="lg" controlId="email">
-          <Form.Label className= "label" >Email</Form.Label>
-          <Form.Control className="input"
-          style={{marginLeft:30}}
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="password" size="lg" controlId="password">
-          <Form.Label className= "label">Password</Form.Label>
-          <Form.Control className="input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-      </Form>
-    </div>
+    <html>
+
+    <head>
+      <link rel="stylesheet" href="css/style.css"/>
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"/>
+      <title>Sign in</title>
+    </head>
+
+    <body>
+      <div class="main">
+        <p class="sign" align="center">Sign in</p>
+        <form class="form1" onSubmit={handleSubmit}>
+          <input class="un " type="text" align="center" placeholder="Email"  controlId="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input class="pass" type="password" align="center" placeholder="Password" controlId="email" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <button class="submit" type="submit" align="center" disabled={!validateForm()}>Sign in</button>
+          <p class="forgot" align="center"><a href="#"></a>Forgot Password?</p>
+          <p class="newUser" align="center"><a href="#"></a>New User?</p>
+        </form>                 
+      </div>
+        
+    </body>
+
+</html>
   );
 }

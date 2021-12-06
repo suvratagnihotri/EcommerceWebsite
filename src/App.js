@@ -4,6 +4,7 @@ import { BrowserRouter,Routes, Route,} from 'react-router-dom';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import Home from './containers/Home';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function App() {
