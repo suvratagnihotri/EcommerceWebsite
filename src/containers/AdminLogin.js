@@ -9,10 +9,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
 
-  function newUser(){
-    navigate("../register", { replace: true });
-  }
-
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
@@ -55,13 +51,13 @@ export default function Login() {
 
     <body>
       <div class="main">
-        <p class="sign" align="center">Sign in</p>
+        <p class="sign" align="center">Admin Login</p>
         <form class="form1" onSubmit={handleSubmit}>
           <input class="un " type="text" align="center" placeholder="Email"  controlId="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
           <input class="pass" type="password" align="center" placeholder="Password" controlId="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           <button class="submit" type="submit" align="center" disabled={!validateForm()}>Sign in</button>
           <p class="forgot" align="center"><a href="#"></a>Forgot Password?</p>
-          <p class="newUser" align="center" onClick={newUser}><a href="#"></a>New User?</p>
+          {/* <p class="newUser" align="center"><a href="#"></a>New User?</p> */}
         </form>                 
       </div>
         

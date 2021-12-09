@@ -1,7 +1,46 @@
-import React from 'react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './Register.css'
 
 export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name,setName] = useState("");
+  let navigate = useNavigate();
+
+  function oldUser(){
+    navigate("../login", { replace: true });
+  }
+
+  function validateForm() {
+    return email.length > 0 && password.length > 0;
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    var email = event.target[0].value
+    var password = event.target[1].value
+    console.log(email)
+    console.log(password)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name:name,email:email,password:password })
+  };
+  fetch('http://localhost:8080/user/add', requestOptions)
+  .then(response => response.json())
+  .then(data => {
+      if (data === true) {  
+          console.log(data)
+          console.log("User Logged in")
+          navigate("../home", { replace: true });           
+      }
+      else{
+        console.log("User is already registered")
+      }
+  });
+  }
+
     return(
        <html>
 
@@ -16,13 +55,13 @@ export default function Register() {
     <body>
       <div class="main">
         <p class="register" align="center">Register</p>
-        <form class="form1">
-          <input class="un " type="text" align="center" placeholder="Name"/>
-          <input class="un " type="text" align="center" placeholder="Email"/>
-          <input class="pass" type="password" align="center" placeholder="Password"/>
-          <a class="submit" align="center">Register</a>
+        <form class="form1" onSubmit={handleSubmit}>
+        <input class="un " type="text" align="center" placeholder="Name"  controlId="name" value={name} onChange={(e) => setName(e.target.value)}/>
+          <input class="un " type="text" align="center" placeholder="Email"  controlId="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input class="pass" type="password" align="center" placeholder="Password" controlId="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <button class="submit" type="submit" align="center" disabled={!validateForm()}>Register</button>
           {/* <p class="forgot" align="center"><a href="#"></a>Forgot Password?</p> */}
-          <p class="oldUser" align="center"><a href="#"></a>Old User? Login</p>
+          <p class="oldUser" align="center" onClick={oldUser}><a href="#"></a>Old User? Login</p>
         </form>    
                     
         </div>
