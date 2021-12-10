@@ -1,10 +1,34 @@
 import React, { useState } from "react";
 // import Form from "react-bootstrap/Form";
 // import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import './AdminCategory.css'
 
 export default function AdminCategoryPage(){
+    const [categories,setCategories]  = useState([
+        {
+          sno:1,
+          Category:"Jeans",
+          total_items:25
+        },
+        {
+          sno:1,
+          Category:"T-Shirts",
+          total_items:25
+        },
+        {
+          sno:1,
+          Category:"Jackets",
+          total_items:25
+        }
+    ])
+
+    const onDelete = (category) => {
+        console.log("I am on delete to this category")
+        setCategories(categories.filter((e)=>{
+            return e!=category
+        }))
+    }
 
     return (
         <html>
@@ -17,21 +41,32 @@ export default function AdminCategoryPage(){
             </head>
             <body>
                 <div class="categories">
-                    <p class="sign" align="center">Sign in</p>
+                    <p class="sign" align="center">Categories</p>
                     <button class="addcategoryButton" align="center">Add Category</button>
                     <table class="table" align="center">
                         <tr>
+                            <th><a>S.NO.</a></th>
                             <th><a>Category</a></th>
                             <th><a>No. Of Items</a></th>
                         </tr>
-                        <tr>
+                        {categories.length===0? "No category to display.":
+                        categories.map((category)=>{
+                            return <tr>
                             <td>
-                                Jeans
+                                {category.sno}
                             </td>
                             <td>
-                                15
+                                {category.Category}
+                            </td>
+                            <td>
+                                {category.total_items}
+                            </td>
+                            <td>
+                                <button className="delete-button" onClick={() => onDelete(category)}>Delete</button>
                             </td>
                         </tr>
+                        
+                        })}
                     </table>
                 </div>
             </body>

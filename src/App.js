@@ -10,6 +10,7 @@ import AdminCategoryPage from './containers/AdminCategoryPage'
 
 
 export default function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
