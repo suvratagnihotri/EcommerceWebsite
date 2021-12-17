@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { render } from "react-dom";
 // import Form from "react-bootstrap/Form";
 // import Button from "react-bootstrap/Button";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './AdminCategory.css'
+import {AdminProduct} from "./AdminProduct";
 
 export default function AdminCategoryPage(){
+    let navigate = useNavigate();
+    let boolVar = false
+    const [categoryName, setCategoryName] = useState("")
     const [categories,setCategories]  = useState([
         {
           sno:1,
@@ -12,12 +17,12 @@ export default function AdminCategoryPage(){
           total_items:25
         },
         {
-          sno:1,
+          sno:2,
           Category:"T-Shirts",
           total_items:25
         },
         {
-          sno:1,
+          sno:3,
           Category:"Jackets",
           total_items:25
         }
@@ -28,7 +33,30 @@ export default function AdminCategoryPage(){
         setCategories(categories.filter((e)=>{
             return e!=category
         }))
+    } 
+    const onAddProduct = (itemName) => {
+        navigate("../admin-product", { replace: true });
     }
+    function onShowProduct () {
+      // console.log(categoryName);
+        return(
+          <div>
+            <AdminProduct data="categoryName"/>
+          </div>
+        );
+    }
+    const displayProductPage = () => {
+      console.log("inside displayPage function")
+      navigate("../admin-product", { replace: true });
+    }
+
+    const wrapperFunction = (categoryName) => {
+      console.log("Inside wrapper function page")
+      setCategoryName(categoryName);
+      onShowProduct();
+      displayProductPage();
+    }
+      
 
     return (
         <html>
@@ -62,10 +90,13 @@ export default function AdminCategoryPage(){
                                 {category.total_items}
                             </td>
                             <td>
-                                <button className="delete-button" onClick={() => onDelete(category)}>Delete</button>
+                                <button className="add-button" onClick={() => onAddProduct(category.Category)}>Add Product</button>
+                            </td>
+                            <td>
+                                <button className="show-button" onClick={()=>wrapperFunction(category.Category)}>Show Products</button>
+                                {/* {boolVar===true? <AdminProduct categoryName={category.Category}></AdminProduct>:"Nothing could be displayed"} */}
                             </td>
                         </tr>
-                        
                         })}
                     </table>
                 </div>

@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
+import {Products} from '../Components/Products'
+import styled from 'styled-components';
+import { Navbar } from '../Components/Navbar';
+import Announcements  from '../Components/Announcements';
+import { Slider } from '../Components/Slider';
+import { Categories } from '../Components/Categories';
+import Newsletter from '../Components/NewsLetter';
+import Footer from '../Components/Footer';
 
-export default function Home() {
+const Container = styled.div`
+align-items: center;
+`
+
+
+const Home= () => {
     return (
-        <div>
-            Home
-        </div>
+        <Container>
+            <Announcements/>
+            <Navbar/>
+            <Slider/>
+            <Categories/>
+            <Products/>
+            <Newsletter/>
+            <Footer/>
+        </Container>
     );
 }
+
+export default Home;
