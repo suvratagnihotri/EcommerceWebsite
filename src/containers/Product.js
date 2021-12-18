@@ -160,15 +160,6 @@ const AddToCartButton = styled.button`
     color: white;
 `;
 
-
-
-
-
-// const Button = styled.button``;
-
-
-
-
 export const Product = () => {
     return (
         <Container>
