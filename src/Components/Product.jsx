@@ -47,7 +47,11 @@ const Circle = styled.div`
 
 const Image = styled.img`
     height: 75%;
-    z-index: 2;
+    z-index: 1;
+    transition: all 1s ease;
+    &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Icon = styled.div`
