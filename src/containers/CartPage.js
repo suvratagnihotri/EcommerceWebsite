@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState,useEffect} from 'react';
 import styled from 'styled-components';
 import Footer from '../Components/Footer';
 import { Navbar } from '../Components/Navbar';
 import Newsletter from '../Components/NewsLetter';
+import { useNavigate } from "react-router-dom";
+import { QuantityButtons } from '../Components/QuantityButtons';
+
 
 const Container = styled.div`
     background-color: white;
@@ -43,8 +46,6 @@ const ImageContainer = styled.div`
     width: 90%;
     height: 100%;
     flex: 1;
-    /* border: 1px solid lightgrey; */
-    /* align-items: center; */
     justify-content: center;
     background-color: #d9d9d9;
     background: transparent;
@@ -84,112 +85,62 @@ const Quantity = styled.div`
     /* justify-content: center; */
 `;
 
-const QuantityButton = styled.button`
-    background-color: white;
-    cursor: pointer;
-    width: 40px;
-    height: 30px;
-    margin-bottom: 20px;
-`;
-
-const Amount = styled.h2`
-    /* align-items: center; */
-    text-align: center;
-    width: 40px;
-    height: 40px;
-`;
-
-
-
 export const CartPage = () => {
+    const [products,setProducts] = useState([]);
+    const [clickedProduct, setClickedProduct] = useState(null);
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        fetch("http://localhost:8080/cart/all")
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data)
+            setProducts(data)
+        })
+    },[])
+
+    const handleKeepShopping = () =>
+    {
+        navigate("../home", { replace: false });
+    }
+
+    const handleCheckOut = () =>{
+        navigate("../checkout", { replace: false });
+    }
+
+
     return (
         <Container>
             <Navbar/>
             <Options>
-                <OptionButton option={"shopping"}>
+                <OptionButton option={"shopping"} onClick={handleKeepShopping}>
                     Keep Shopping
                 </OptionButton>
-                <OptionButton option={"checkout"}>
+                <OptionButton option={"checkout"} onClick={handleCheckOut}>
                     Checkout Now
                 </OptionButton>
             </Options>
-            <Wrapper>
+            {products.map(product=>(
+                <Wrapper>
                 <ImageContainer>
-                    <Image src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
+                    <Image src={product.imageUrl}/>
                 </ImageContainer>
                 <ProductInfo>
                     <Title>
-                        Best Product
+                        {product.name}
                     </Title>
                     <Description>
                         Here comes the description.
                     </Description>
                     <Price>
-                        Rs. 5000
+                        {product.price}
                     </Price>
                     <Quantity>
-                        <QuantityButton>
-                            -
-                        </QuantityButton>
-                        <Amount>1</Amount>
-                        <QuantityButton>
-                            +
-                        </QuantityButton>
+                        <QuantityButtons product={product}/>
                     </Quantity>
                 </ProductInfo>
             </Wrapper>
-
-            <Wrapper>
-                <ImageContainer>
-                    <Image src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
-                </ImageContainer>
-                <ProductInfo>
-                    <Title>
-                        Best Product
-                    </Title>
-                    <Description>
-                        Here comes the description.
-                    </Description>
-                    <Price>
-                        Rs. 5000
-                    </Price>
-                    <Quantity>
-                        <QuantityButton>
-                            -
-                        </QuantityButton>
-                        <Amount>1</Amount>
-                        <QuantityButton>
-                            +
-                        </QuantityButton>
-                    </Quantity>
-                </ProductInfo>
-            </Wrapper>
-
-            <Wrapper>
-                <ImageContainer>
-                    <Image src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
-                </ImageContainer>
-                <ProductInfo>
-                    <Title>
-                        Best Product
-                    </Title>
-                    <Description>
-                        Here comes the description.
-                    </Description>
-                    <Price>
-                        Rs. 5000
-                    </Price>
-                    <Quantity>
-                        <QuantityButton>
-                            -
-                        </QuantityButton>
-                        <Amount>1</Amount>
-                        <QuantityButton>
-                            +
-                        </QuantityButton>
-                    </Quantity>
-                </ProductInfo>
-            </Wrapper>
+            ))}
             <Newsletter/>
             <Footer/>
         </Container>

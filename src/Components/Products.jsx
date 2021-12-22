@@ -15,7 +15,6 @@ export const Products = () => {
             {popularProducts.map(item=>(
                 <Product itemData = {item}/>
             ))}
-            
         </Container>
     )
 }

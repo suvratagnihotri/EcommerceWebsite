@@ -72,13 +72,33 @@ const Icon = styled.div`
 
 
 export const Product = ({itemData}) => {
+
+    const handleCartClick =(itemData)=>
+    {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name:itemData.name,category:itemData.category,price:itemData.price,imageUrl:itemData.img })
+        };
+        fetch('http://localhost:8080/cart/add', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (data === true) {  
+                console.log(data)
+                console.log("Product is added to the cart")          
+            }
+            else{
+              console.log("product cannot be added to the cart")
+            }
+        });
+    }
     return (
         <Container>
             <Circle/>
                 <Image src={itemData.img}/>
                 <Info>
                     <Icon>
-                        <AddShoppingCartIcon/>
+                        <AddShoppingCartIcon onClick={()=>handleCartClick(itemData)}/>
                     </Icon>
                     <Icon>
                         <FavoriteBorderIcon/>

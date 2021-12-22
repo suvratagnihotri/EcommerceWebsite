@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 import { Badge, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     height :60px;
@@ -65,6 +66,21 @@ const MenuItem = styled.div`
 
 
 export const Navbar = () => {
+    let navigate = useNavigate();
+
+    const handleCartClick = ()=>
+    {
+        navigate("../cart", { replace: false });
+    }
+
+    const handleRegister = () =>{
+        navigate("../register", { replace: false });
+    }
+
+    const handleSignin = () =>{
+        navigate("../login", { replace: false });
+    }
+
     return (
         <Container>
             <Wrapper>
@@ -79,9 +95,9 @@ export const Navbar = () => {
                 <Logo>Asylum.</Logo>
             </Center>
             <Right>
-                <MenuItem>Register</MenuItem>
-                <MenuItem>Sign In</MenuItem>
-                <IconButton aria-label="cart">
+                <MenuItem onClick={handleRegister}>Register</MenuItem>
+                <MenuItem onClick={handleSignin}>Sign In</MenuItem>
+                <IconButton aria-label="cart" onClick={handleCartClick}>
                     <Badge badgeContent={4} color="secondary">
                         <ShoppingCartIcon />
                     </Badge>
