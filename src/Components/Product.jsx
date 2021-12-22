@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { ProductPage } from "../containers/ProductPage";
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 const Info = styled.div`
@@ -72,6 +75,12 @@ const Icon = styled.div`
 
 
 export const Product = ({itemData}) => {
+    let navigate = useNavigate();
+
+    const handleProductClick = () =>{
+        console.log(itemData)
+        navigate("../mainproduct", {state:itemData}, { replace: true });
+    }
 
     const handleCartClick =(itemData)=>
     {
@@ -93,7 +102,7 @@ export const Product = ({itemData}) => {
         });
     }
     return (
-        <Container>
+        <Container onClick={handleProductClick}>
             <Circle/>
                 <Image src={itemData.img}/>
                 <Info>

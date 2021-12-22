@@ -3,6 +3,7 @@ import {Navbar} from '../Components/Navbar';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Footer from '../Components/Footer';
 import Newsletter from '../Components/NewsLetter';
+import { useLocation } from 'react-router';
 
 
 const Container = styled.div`
@@ -107,7 +108,6 @@ const ColorButton = styled.button`
     text-align:center;
     box-sizing: border-box;
 `;
-
 const Checkout = styled.div`
     padding: 5px;
     margin-top: 25px;
@@ -136,8 +136,6 @@ const QuantityButton = styled.button`
     border: 1px solid #222;
     border-radius: 50%;
     background-color: white;
-    /* border-right: ${props=>props.buttonType==="-" && "none"};
-    border-left: ${props=>props.buttonType==="+" && "none"}; */
 `;
 
 const Quantity = styled.h3`
@@ -160,22 +158,24 @@ const AddToCartButton = styled.button`
     color: white;
 `;
 
-export const Product = () => {
+export const ProductPage = (props) => {
+    const {state} = useLocation();
+    console.log(state)
     return (
         <Container>
             <Navbar/>
             <Wrapper>
                 <VerticalImages>
-                    <VerticalImage src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
-                    <VerticalImage src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
-                    <VerticalImage src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
-                    <VerticalImage src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
+                    <VerticalImage src={state.img}/>
+                    <VerticalImage src={state.img}/>
+                    <VerticalImage src={state.img}/>
+                    <VerticalImage src={state.img}/>
 
                 </VerticalImages>
-                <Image src="https://cdn.shopify.com/s/files/1/0537/9771/6146/products/11_24e30cf8-c557-49c6-9835-c142ddc82957_900x.jpg?v=1639320973"/>
+                <Image src={state.img}/>
                 <ImageInfo>
                     <Title>360 Stretch Comfort Knit Blazer</Title>
-                    <Amount>Rs.5000</Amount>
+                    <Amount>{state.price}</Amount>
                     <Description>Combining winter comfort with laid back luxury, this 4-Way stretch knit blazer is crafted in premium fabric and comes with matching drawstring pants.</Description>
                     <Size>
                         <SizeText>

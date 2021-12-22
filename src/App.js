@@ -6,10 +6,11 @@ import Home from './containers/Home';
 import AdminLogin from './containers/AdminLogin'
 import AdminCategoryPage from './containers/AdminCategoryPage'
 import {AdminProduct} from './containers/AdminProduct';
-import { Product } from './containers/Product';
+// import { Product } from './containers/ProductPage';
 import { CartPage } from './containers/CartPage';
 import { ProductsPage } from './containers/ProductsPage';
 import { CheckoutPage } from './containers/CheckoutPage';
+import { ProductPage } from './containers/ProductPage';
 // import  Products  from './containers/Products';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,6 +29,8 @@ export default function App() {
           <Route exact path='/admin-product' element={<AdminProduct/>}/>
           <Route exact path='/checkout' element={<CheckoutPage/>}/>
           <Route exact path='/cart' element={<CartPage/>}/>
+          <Route exact path='/mainproduct' element={<ProductPage/>}/>
+
 
 
       </Routes>
