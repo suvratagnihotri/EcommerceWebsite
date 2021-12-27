@@ -9,7 +9,8 @@ import Newsletter from '../Components/NewsLetter';
 import Footer from '../Components/Footer';
 
 const Container = styled.div`
-align-items: center;
+    align-items: center;
+    background-color: white;
 `
 
 

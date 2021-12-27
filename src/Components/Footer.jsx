@@ -11,7 +11,9 @@ import {
   import { mobile } from "../responsive";
   
   const Container = styled.div`
+    margin-top: 10px;
     display: flex;
+    border-top: 2px solid gray;
     ${mobile({ flexDirection: "column" })}
   `;
   

@@ -11,6 +11,8 @@ import { CartPage } from './containers/CartPage';
 import { ProductsPage } from './containers/ProductsPage';
 import { CheckoutPage } from './containers/CheckoutPage';
 import { ProductPage } from './containers/ProductPage';
+import { Test } from './containers/Test';
+// import { Testing } from './containers/testing';
 // import  Products  from './containers/Products';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,6 +32,8 @@ export default function App() {
           <Route exact path='/checkout' element={<CheckoutPage/>}/>
           <Route exact path='/cart' element={<CartPage/>}/>
           <Route exact path='/mainproduct' element={<ProductPage/>}/>
+          <Route exact path='/mainproduct' element={<ProductPage/>}/>
+
 
 
 

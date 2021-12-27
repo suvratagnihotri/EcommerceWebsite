@@ -6,8 +6,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
-    height :60px;
+    height :90px;
     margin-bottom: 20px;
+    border-top: 0.5px solid grey;
+    border-bottom: 0.5px solid grey;
     // background-color : black
 
 `;

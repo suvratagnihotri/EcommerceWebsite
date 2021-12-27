@@ -26,7 +26,7 @@ const Options = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid lightgray;
+    /* border-top: 1px solid lightgray; */
 `;
 
 const OptionButton = styled.button`
@@ -87,7 +87,6 @@ const Quantity = styled.div`
 
 export const CartPage = () => {
     const [products,setProducts] = useState([]);
-    const [clickedProduct, setClickedProduct] = useState(null);
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -99,15 +98,22 @@ export const CartPage = () => {
         })
     },[])
 
+    console.log(products);
+
     const handleKeepShopping = () =>
     {
         navigate("../home", { replace: false });
     }
 
-    const handleCheckOut = () =>{
-        navigate("../checkout", { replace: false });
+    const handleCheckOut = (cartProducts) => {
+        console.log(cartProducts)
+        navigate("../checkout", {state:cartProducts},{ replace: false });
     }
 
+    const handleProductClick = (clickedProduct)=> {
+        // console.log(clickedProduct)
+        navigate("../mainproduct", {state:clickedProduct}, { replace: false });
+    }
 
     return (
         <Container>
@@ -116,14 +122,14 @@ export const CartPage = () => {
                 <OptionButton option={"shopping"} onClick={handleKeepShopping}>
                     Keep Shopping
                 </OptionButton>
-                <OptionButton option={"checkout"} onClick={handleCheckOut}>
+                <OptionButton totalProducts={products} option={"checkout"} onClick={() => handleCheckOut(products)}>
                     Checkout Now
                 </OptionButton>
             </Options>
             {products.map(product=>(
                 <Wrapper>
-                <ImageContainer>
-                    <Image src={product.imageUrl}/>
+                <ImageContainer product={product} onClick={() => handleProductClick(product)}>
+                    <Image src={product.mainUrl}/>
                 </ImageContainer>
                 <ProductInfo>
                     <Title>

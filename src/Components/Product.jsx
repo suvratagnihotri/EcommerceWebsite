@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { ProductPage } from "../containers/ProductPage";
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
@@ -58,6 +56,7 @@ const Image = styled.img`
 `;
 
 const Icon = styled.div`
+    z-index: 1;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -79,7 +78,7 @@ export const Product = ({itemData}) => {
 
     const handleProductClick = () =>{
         console.log(itemData)
-        navigate("../mainproduct", {state:itemData}, { replace: true });
+        navigate("../mainproduct", {state:itemData}, { replace: false });
     }
 
     const handleCartClick =(itemData)=>
@@ -87,7 +86,7 @@ export const Product = ({itemData}) => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name:itemData.name,category:itemData.category,price:itemData.price,imageUrl:itemData.img })
+            body: JSON.stringify({ name:itemData.name,category:itemData.category,price:itemData.price,mainUrl:itemData.mainUrl,imageUrl1:itemData.imageUrl1,imageUrl2:itemData.imageUrl2,imageUrl3:itemData.imageUrl3 })
         };
         fetch('http://localhost:8080/cart/add', requestOptions)
         .then(response => response.json())
@@ -104,7 +103,7 @@ export const Product = ({itemData}) => {
     return (
         <Container onClick={handleProductClick}>
             <Circle/>
-                <Image src={itemData.img}/>
+                <Image src={itemData.mainUrl}/>
                 <Info>
                     <Icon>
                         <AddShoppingCartIcon onClick={()=>handleCartClick(itemData)}/>

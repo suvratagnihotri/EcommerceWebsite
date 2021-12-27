@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
 import Footer from '../Components/Footer';
 import { Navbar } from '../Components/Navbar';
 import Newsletter from '../Components/NewsLetter';
+import { useLocation } from 'react-router';
 
 const Container = styled.div`
     background-color: white;
@@ -80,7 +81,20 @@ const PaymentButton = styled.button`
 
 
 
-export const CheckoutPage = () => {
+export const CheckoutPage = (props) => {
+    const {state} = useLocation();
+    const[totalQuantity,setTotalQuantity] = useState(0);
+    const[totalAmount,setTotalAmount] = useState(0);
+
+
+    useEffect(() => {
+        state.forEach(product => {
+            setTotalQuantity(totalQuantity+product.quantity);
+            setTotalAmount(totalAmount+product.price*product.quantity);
+        });
+    },[])
+    
+
     return (
         <Container>
             <Navbar/>
@@ -93,7 +107,7 @@ export const CheckoutPage = () => {
                             Total Products
                         </ProductsHeading>
                         <ProductsCount>
-                            5
+                           {totalQuantity}
                         </ProductsCount>
                     </Quantity>
                     <Pricing>
@@ -101,7 +115,7 @@ export const CheckoutPage = () => {
                             Total Amount
                         </PricingHeading>
                         <PricingCount>
-                            Rs.10000
+                            Rs.{totalAmount}
                         </PricingCount>
                     </Pricing>
                     <Delivery>

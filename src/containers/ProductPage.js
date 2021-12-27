@@ -10,6 +10,7 @@ const Container = styled.div`
     background-color: white;
 `;
 
+
 const VerticalImages = styled.div`
 
     width: 15%;
@@ -166,16 +167,15 @@ export const ProductPage = (props) => {
             <Navbar/>
             <Wrapper>
                 <VerticalImages>
-                    <VerticalImage src={state.img}/>
-                    <VerticalImage src={state.img}/>
-                    <VerticalImage src={state.img}/>
-                    <VerticalImage src={state.img}/>
-
+                    <VerticalImage src={state.imageUrl1}/>
+                    <VerticalImage src={state.imageUrl2}/>
+                    <VerticalImage src={state.imageUrl3}/>
+                    <VerticalImage src={state.imageUrl3}/>
                 </VerticalImages>
-                <Image src={state.img}/>
+                <Image src={state.mainUrl}/>
                 <ImageInfo>
                     <Title>360 Stretch Comfort Knit Blazer</Title>
-                    <Amount>{state.price}</Amount>
+                    <Amount>Rs. {state.price}</Amount>
                     <Description>Combining winter comfort with laid back luxury, this 4-Way stretch knit blazer is crafted in premium fabric and comes with matching drawstring pants.</Description>
                     <Size>
                         <SizeText>
@@ -216,5 +216,4 @@ export const ProductPage = (props) => {
             <Footer/>
         </Container>
         )
-
 }

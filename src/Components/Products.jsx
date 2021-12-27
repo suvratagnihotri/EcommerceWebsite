@@ -1,5 +1,6 @@
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
+// import { popularProducts } from "../data";
 import { Product } from "./Product";
 
 const Container = styled.div`
@@ -10,9 +11,21 @@ const Container = styled.div`
 `;
 
 export const Products = () => {
+    const [products,setProducts] = useState([]);
+
+
+    useEffect(() => {
+        fetch("http://localhost:8080/products/all")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setProducts(data)
+        })
+    },[]);
+    console.log("Popular Products are :",products);
     return (
         <Container>
-            {popularProducts.map(item=>(
+            {products.map(item=>(
                 <Product itemData = {item}/>
             ))}
         </Container>
