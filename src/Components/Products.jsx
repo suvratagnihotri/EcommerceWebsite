@@ -15,7 +15,7 @@ export const Products = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:8080/products/all")
+        fetch("http://ec2-13-232-35-196.ap-south-1.compute.amazonaws.com:8080/ecommerce/products/all")
         .then(response => response.json())
         .then(data => {
             console.log(data)

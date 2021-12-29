@@ -28,7 +28,7 @@ export default function Login() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email:email,password:password })
   };
-  fetch('http://localhost:8080/user/present', requestOptions)
+  fetch('http://ec2-13-232-35-196.ap-south-1.compute.amazonaws.com:8080/ecommerce/user/present', requestOptions)
   .then(response => response.json())
   .then(data => {
       if (data === true) {  

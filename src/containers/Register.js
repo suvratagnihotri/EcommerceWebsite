@@ -27,7 +27,7 @@ export default function Register() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name:name,email:email,password:password })
   };
-  fetch('http://localhost:8080/user/add', requestOptions)
+  fetch('http://ec2-13-232-35-196.ap-south-1.compute.amazonaws.com:8080/ecommerce/user/add', requestOptions)
   .then(response => response.json())
   .then(data => {
       if (data === true) {  

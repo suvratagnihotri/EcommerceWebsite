@@ -109,7 +109,7 @@ export const AdminProduct = () => {
             body: JSON.stringify({ name:name,category:category,mainUrl:mainUrl,
                 imageUrl1:imageUrl1,imageUrl2:imageUrl2,imageUrl3:imageUrl3,price:price })
         };
-        fetch('http://localhost:8080/products/add', requestOptions)
+        fetch('http://ec2-13-232-35-196.ap-south-1.compute.amazonaws.com:8080/ecommerce/products/add', requestOptions)
         .then(response => response.json())
         .then(data => {
             if (data === true) {  

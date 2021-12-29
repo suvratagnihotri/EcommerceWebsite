@@ -88,7 +88,7 @@ export const Product = ({itemData}) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name:itemData.name,category:itemData.category,price:itemData.price,mainUrl:itemData.mainUrl,imageUrl1:itemData.imageUrl1,imageUrl2:itemData.imageUrl2,imageUrl3:itemData.imageUrl3 })
         };
-        fetch('http://localhost:8080/cart/add', requestOptions)
+        fetch('http://ec2-13-232-35-196.ap-south-1.compute.amazonaws.com:8080/ecommerce/cart/add', requestOptions)
         .then(response => response.json())
         .then(data => {
             if (data === true) {  

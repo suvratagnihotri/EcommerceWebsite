@@ -90,7 +90,7 @@ export const CartPage = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:8080/cart/all")
+        fetch("http://ec2-13-232-35-196.ap-south-1.compute.amazonaws.com:8080/ecommerce/cart/all")
         .then(response => response.json())
         .then(data => {
             // console.log(data)
