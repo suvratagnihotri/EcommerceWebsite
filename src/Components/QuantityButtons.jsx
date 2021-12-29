@@ -56,7 +56,7 @@ export const QuantityButtons = ({product}) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id:product.id,name:product.name,category:product.category,price:product.price,imageUrl:product.imageUrl })
             };
-            fetch('http://localhost:8080/cart/add', requestOptions)
+            fetch('http://ec2-13-232-35-196.ap-south-1.compute.amazonaws.com:8080/ecommerce/cart/add', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data === true) {  
